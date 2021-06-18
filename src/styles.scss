@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+.container {
+  width: 1280px;
+}
+
+.formDiv {
+  width: 500px;
+  margin: 50px auto;
+}
+.btnDiv {
+  display: flex;
+  justify-content: center;
+  button {
+    margin-left: 12px;
+  }
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 104px;
+}
+.card {
+  width: 700px;
+  margin: 0 auto;
+}
