@@ -1,0 +1,26 @@
+<div class="formDiv">
+    <form [formGroup]="profileForm">
+      <span class="p-float-label">
+        <input id="float-input" type="text" pInputText formControlName="manufactory" required>
+        <label for="float-input">製造商</label>
+      </span>
+      <span class="p-float-label">
+        <input id="float-input" type="text" pInputText formControlName="type" required>
+        <label for="float-input">類別</label>
+      </span>
+      <span class="p-float-label">
+        <input id="float-input" type="text" pInputText formControlName="minPrice" required>
+        <label for="float-input">底價</label>
+      </span>
+      <span class="p-float-label">
+        <input id="float-input" type="text" pInputText formControlName="price" required>
+        <label for="float-input">售價</label>
+      </span>
+    
+    </form>
+    <div class="btnDiv">
+      <button pButton pRipple type="button" label="新增" class="p-button-success" (click)="insert()"></button>
+      <button pButton pRipple type="button" label="修改" class="p-button-warning" (click)="update()"></button>
+      <button pButton pRipple type="button" label="清空" class="p-button-info" (click)="clear()"></button>
+    </div>
+  </div>

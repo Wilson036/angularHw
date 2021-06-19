@@ -8,9 +8,11 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { AppComponent } from './app.component';
 import { InputTextModule } from 'primeng/inputtext';
+import { FormComponent } from './form/form.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FormComponent, TableComponent],
   imports: [
     BrowserModule,
     FormsModule,
