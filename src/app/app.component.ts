@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Products } from 'src/model/product';
+import { Product } from 'src/model/product';
+import { Products } from 'src/model/products';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent {
   products: Products[] = [];
 
   profileForm = new FormGroup({
-    manufactory: new FormControl('', []),
+    manufactory: new FormControl('', Validators.required),
     type: new FormControl('', Validators.required),
     minPrice: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
@@ -46,7 +47,6 @@ export class AppComponent {
   }
 
   update() {
-    console.log(this.selectId);
     this.products = this.products.map((product) => {
       if (product.id === this.selectId) {
         //同樣的key值後面的資料會蓋掉前面
@@ -54,5 +54,13 @@ export class AppComponent {
       }
       return product; //arr.push(product);
     });
+  }
+
+  insert(product: Product) {
+    this.products.push({ id: this.products.length + 1, ...product });
+  }
+
+  delete(productId: number) {
+    this.products = this.products.filter(({ id }) => id !== productId);
   }
 }

@@ -1,6 +1,6 @@
 <div class="container" >
-  <app-form [products]="products" [profileForm]="profileForm" (upDateEvent)="update()"></app-form>
-  <app-table [products]="products" (SetValueEvent)="setValues($event)"></app-table>
+  <app-form  [profileForm]="profileForm" (upDateEvent)="update()" (insertEvent)="insert($event)"></app-form>
+  <app-table [products]="products" (setValueEvent)="setValues($event)" (deleteEvent)="delete($event)"></app-table>
 </div>
 
 

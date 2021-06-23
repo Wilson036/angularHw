@@ -1,6 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { Products } from 'src/model/product';
+import { Products } from 'src/model/products';
 
 @Component({
   selector: 'app-table',
@@ -12,9 +12,10 @@ export class TableComponent implements OnInit {
   products: Products[] = [];
 
   @Output()
-  SetValueEvent = new EventEmitter<Products>();
+  setValueEvent = new EventEmitter<Products>();
 
-  id: number | undefined = 0;
+  @Output()
+  deleteEvent = new EventEmitter<number>();
 
   constructor() {}
 
@@ -22,9 +23,8 @@ export class TableComponent implements OnInit {
 
   setValues(product: Products) {
     //把資料set到表單中
-    //const {manufactory , type} = product;
-
-    this.SetValueEvent.emit(product);
+    //const {manufactory , type} = product;xe
+    this.setValueEvent.emit(product);
     //this.profileForm.patchValue({ ...product });
     //this.profileForm.patchValue({ manufactory: product.manufactory });
     //this.profileForm.controls['manufactory'].setValue(product.manufactory);
@@ -33,6 +33,6 @@ export class TableComponent implements OnInit {
   }
 
   delete(productId: number) {
-    this.products = this.products.filter(({ id }) => id !== productId);
+    this.deleteEvent.emit(productId);
   }
 }

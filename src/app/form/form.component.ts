@@ -1,6 +1,14 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Products } from '../../model/product';
+import {
+  Component,
+  Input,
+  OnInit,
+  Output,
+  EventEmitter,
+  SimpleChanges,
+} from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Product } from 'src/model/product';
+import { Products } from '../../model/products';
 
 @Component({
   selector: 'app-form',
@@ -9,26 +17,29 @@ import { Products } from '../../model/product';
 })
 export class FormComponent implements OnInit {
   @Input()
-  products: Products[] = [];
-
-  @Input()
   profileForm: FormGroup = new FormGroup({});
 
   @Output()
   upDateEvent = new EventEmitter();
 
+  @Output()
+  insertEvent = new EventEmitter<Product>();
+
   constructor() {}
 
   ngOnInit(): void {}
 
+  ngOnChanges(changes: SimpleChanges) {
+    console.log({ changes });
+  }
+
   insert() {
-    const data = this.profileForm.value;
-    const validate = Object.values(data)
-      .map((e) => Boolean(e))
-      .every((val) => val);
-    if (validate) {
-      this.products.push({ id: this.products.length + 1, ...data });
+    if (this.profileForm.invalid) {
+      return;
     }
+    this.insertEvent.emit({
+      ...this.profileForm.value,
+    });
   }
 
   clear() {
@@ -36,7 +47,9 @@ export class FormComponent implements OnInit {
   }
 
   update() {
+    if (this.profileForm.invalid) {
+      return;
+    }
     this.upDateEvent.emit();
-    //const arry = [];
   }
 }
